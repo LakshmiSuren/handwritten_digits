@@ -8,12 +8,10 @@ import numpy as np
 model = load_model('mnist.h5')
 
 def predict_digit(img):
-    #resize image to 28x28 pixels
+    
     img = img.resize((28,28))
-    #convert rgb to grayscale
     img = img.convert('L')
     img = np.array(img)
-    #reshaping to support our model input and normalizing
     img = img.reshape(1,28,28,1)
     img = img/255.0
     #predicting the class
@@ -32,7 +30,6 @@ class App(tk.Tk):
         self.classify_btn = tk.Button(self, text = "Recognise", command = self.classify_handwriting)   
         self.button_clear = tk.Button(self, text = "Clear", command = self.clear_all)
        
-        # Grid structure
         self.canvas.grid(row=0, column=0, pady=2, sticky=W, )
         self.label.grid(row=0, column=1,pady=2, padx=2)
         self.classify_btn.grid(row=1, column=1, pady=2, padx=2)
